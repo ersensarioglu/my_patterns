@@ -2,10 +2,10 @@ from mymodel import Model
 from myview import View
 
 class Controller:
-    def __init__(self, model: Model, view: View, generate_uuid_func):
+    def __init__(self, model: Model, view: View, uuid_strategy=None):
         self.model = model
         self.view = view
-        self.generate_uuid_func = generate_uuid_func
+        self.uuid_strategy = uuid_strategy
 
     def set_name(self, name):
         self.model.set_name(name)
@@ -17,8 +17,11 @@ class Controller:
         self.view.setup(self)
         self.view.start_main_loop()
         
+    def set_uuid_strategy(self, uuid_strategy):
+        self.uuid_strategy = uuid_strategy
+        
     def handle_click_generate_uuid(self):
-        self.model.generate_uuid(self.generate_uuid_func)
+        self.model.generate_uuid(self.uuid_strategy)
         self.view.append_to_list(self.model.get_uuid())
         
     def handle_click_clear_list(self):
