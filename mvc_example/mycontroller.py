@@ -1,8 +1,9 @@
 from mymodel import Model
 from myview import View
+from uuid4_uuid_strategy import Uuid4UuidStrategy
 
 class Controller:
-    def __init__(self, model: Model, view: View, uuid_strategy=None):
+    def __init__(self, model: Model, view: View, uuid_strategy: Uuid4UuidStrategy = None):
         self.model = model
         self.view = view
         self.uuid_strategy = uuid_strategy
@@ -17,7 +18,7 @@ class Controller:
         self.view.setup(self)
         self.view.start_main_loop()
         
-    def set_uuid_strategy(self, uuid_strategy):
+    def set_uuid_strategy(self, uuid_strategy: Uuid4UuidStrategy):
         self.uuid_strategy = uuid_strategy
         
     def handle_click_generate_uuid(self):
